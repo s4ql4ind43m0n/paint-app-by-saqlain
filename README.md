@@ -2,6 +2,8 @@
 
 A simple browser-based paint app inspired by Microsoft Paint, redesigned with Apple-style controls.
 
+Repository for vibe coding basics/fundamentals. Mostly built using AI tools, with little coding.
+
 ## Features
 
 - Brush, eraser, line, rectangle, oval, text, and color picker tools
