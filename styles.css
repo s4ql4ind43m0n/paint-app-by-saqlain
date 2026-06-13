@@ -1,0 +1,349 @@
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  --bg: #eef1f5;
+  --panel: rgba(255, 255, 255, 0.78);
+  --panel-strong: rgba(255, 255, 255, 0.92);
+  --line: rgba(29, 29, 31, 0.13);
+  --text: #1d1d1f;
+  --muted: #68707d;
+  --accent: #007aff;
+  --shadow: 0 24px 70px rgba(45, 55, 72, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(0, 122, 255, 0.14), transparent 28rem),
+    linear-gradient(145deg, #f7f8fb, var(--bg));
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+}
+
+.paint-window {
+  width: min(1420px, 100%);
+  height: min(900px, calc(100vh - 48px));
+  min-height: 680px;
+  display: grid;
+  grid-template-rows: 52px 1fr 34px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  background: rgba(244, 246, 249, 0.72);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(24px) saturate(1.4);
+}
+
+.titlebar,
+.statusbar {
+  display: flex;
+  align-items: center;
+  border-color: var(--line);
+  background: var(--panel);
+}
+
+.titlebar {
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+  gap: 16px;
+}
+
+.traffic-lights {
+  display: flex;
+  gap: 8px;
+}
+
+.traffic-lights span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.close { background: #ff5f57; }
+.minimize { background: #febc2e; }
+.zoom { background: #28c840; }
+
+.document-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.document-title span {
+  color: var(--muted);
+}
+
+.title-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-button,
+.tool-button,
+.action-grid button {
+  min-width: 38px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.icon-button:hover,
+.tool-button:hover,
+.action-grid button:hover {
+  background: #fff;
+}
+
+.workspace {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) 276px;
+}
+
+.toolbar,
+.inspector {
+  padding: 14px;
+  border-color: var(--line);
+  background: rgba(248, 249, 252, 0.78);
+}
+
+.toolbar {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  border-right: 1px solid var(--line);
+}
+
+.tool-button {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.tool-button.active {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 8px 22px rgba(0, 122, 255, 0.28);
+}
+
+.stage-panel {
+  min-width: 0;
+  min-height: 0;
+  padding: 22px;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+}
+
+.canvas-wrap {
+  width: min(100%, 1280px);
+  aspect-ratio: 1280 / 820;
+  display: grid;
+  background:
+    linear-gradient(45deg, #dfe3e9 25%, transparent 25%),
+    linear-gradient(-45deg, #dfe3e9 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #dfe3e9 75%),
+    linear-gradient(-45deg, transparent 75%, #dfe3e9 75%);
+  background-color: #f8fafc;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+  background-size: 24px 24px;
+  border-radius: 10px;
+  box-shadow: 0 18px 48px rgba(35, 43, 58, 0.2);
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 10px;
+  background: #fff;
+  touch-action: none;
+}
+
+.inspector {
+  border-left: 1px solid var(--line);
+  overflow: auto;
+}
+
+.panel-section {
+  padding: 0 0 18px;
+  margin: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-section:last-child {
+  border-bottom: 0;
+}
+
+.section-title {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.color-well {
+  height: 44px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-strong);
+}
+
+.color-well input {
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.color-well span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.swatches {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.swatch {
+  aspect-ratio: 1;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.range-row {
+  display: grid;
+  grid-template-columns: 58px 1fr 36px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.range-row span {
+  color: var(--muted);
+}
+
+.range-row input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.range-row strong {
+  text-align: right;
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.action-grid button {
+  width: 100%;
+  font-weight: 700;
+}
+
+.text-panel input {
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.statusbar {
+  justify-content: space-between;
+  padding: 0 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 0;
+  }
+
+  .paint-window {
+    height: 100vh;
+    min-height: 0;
+    border-radius: 0;
+  }
+
+  .workspace {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .inspector {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .stage-panel {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 620px) {
+  .document-title span,
+  #importButton span {
+    display: none;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .toolbar {
+    grid-template-columns: repeat(7, 40px);
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .inspector {
+    grid-template-columns: 1fr;
+    max-height: 260px;
+  }
+}

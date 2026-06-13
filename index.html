@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paint for Mac</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="paint-window" aria-label="Paint for Mac">
+        <header class="titlebar">
+          <div class="traffic-lights" aria-hidden="true">
+            <span class="close"></span>
+            <span class="minimize"></span>
+            <span class="zoom"></span>
+          </div>
+          <div class="document-title">
+            <strong>Paint</strong>
+            <span>Untitled.canvas</span>
+          </div>
+          <div class="title-actions">
+            <button class="icon-button" id="importButton" title="Import image" aria-label="Import image">
+              <span>⌘I</span>
+            </button>
+            <button class="icon-button" id="downloadButton" title="Download PNG" aria-label="Download PNG">
+              <span>⇩</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="workspace">
+          <aside class="toolbar" aria-label="Tools">
+            <button class="tool-button active" data-tool="brush" title="Brush" aria-label="Brush">✎</button>
+            <button class="tool-button" data-tool="eraser" title="Eraser" aria-label="Eraser">⌫</button>
+            <button class="tool-button" data-tool="line" title="Line" aria-label="Line">╱</button>
+            <button class="tool-button" data-tool="rect" title="Rectangle" aria-label="Rectangle">□</button>
+            <button class="tool-button" data-tool="circle" title="Oval" aria-label="Oval">○</button>
+            <button class="tool-button" data-tool="text" title="Text" aria-label="Text">T</button>
+            <button class="tool-button" data-tool="picker" title="Color picker" aria-label="Color picker">⌖</button>
+          </aside>
+
+          <section class="stage-panel">
+            <div class="canvas-wrap" id="canvasWrap">
+              <canvas id="paintCanvas" width="1280" height="820" aria-label="Drawing canvas"></canvas>
+            </div>
+          </section>
+
+          <aside class="inspector" aria-label="Inspector">
+            <div class="panel-section">
+              <div class="section-title">Color</div>
+              <label class="color-well">
+                <input type="color" id="colorPicker" value="#1d1d1f" aria-label="Current color" />
+                <span id="colorLabel">#1D1D1F</span>
+              </label>
+              <div class="swatches" id="swatches" aria-label="Color swatches"></div>
+            </div>
+
+            <div class="panel-section">
+              <div class="section-title">Stroke</div>
+              <label class="range-row">
+                <span>Size</span>
+                <input id="brushSize" type="range" min="1" max="72" value="12" />
+                <strong id="brushSizeValue">12</strong>
+              </label>
+              <label class="range-row">
+                <span>Opacity</span>
+                <input id="opacity" type="range" min="10" max="100" value="100" />
+                <strong id="opacityValue">100</strong>
+              </label>
+            </div>
+
+            <div class="panel-section">
+              <div class="section-title">Actions</div>
+              <div class="action-grid">
+                <button id="undoButton">Undo</button>
+                <button id="redoButton">Redo</button>
+                <button id="clearButton">Clear</button>
+                <button id="fillButton">Fill</button>
+              </div>
+            </div>
+
+            <div class="panel-section text-panel">
+              <div class="section-title">Text</div>
+              <input id="textInput" type="text" value="Hello Mac" aria-label="Text to place" />
+            </div>
+          </aside>
+        </div>
+
+        <footer class="statusbar">
+          <span id="statusText">Brush ready</span>
+          <span>1280 × 820 px</span>
+        </footer>
+      </section>
+    </main>
+
+    <input id="fileInput" type="file" accept="image/*" hidden />
+    <script src="app.js"></script>
+  </body>
+</html>
